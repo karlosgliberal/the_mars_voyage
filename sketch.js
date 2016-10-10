@@ -1,15 +1,9 @@
 var colorThief = new ColorThief();
-var incremento = 0;
-var incremento2 = 1000;
-var incremento3 = 2000;
-var incremento4 = 3000;
-var incremento5 = 4000;
 var canvas, polygons;
 var pol1, pol2, pol3, pol4, pol5, pol6, pol7, pol8;
 var polis = [];
-var rang;
-var pares;
-var numeroConguntos = 10;
+var pol = []
+var numeroConguntos = 100;
 var simultaneamente;
 
 
@@ -21,27 +15,30 @@ function preload() {
 function setup() {
   canvas = createCanvas(1024, 768);
   smooth(2);
-  for (var i = 0; i < 4000; i++) {
+  for (let i = 0; i < 4000; i++) {
     polis[i] =new Voronoi(polygons[i]);
   }
-
-  simultaneamente = polygons.length / numeroConguntos;
-  console.log(simultaneamente);
-  rang = _.range(1, polygons.length, simultaneamente);
-  pares = _.partition(rang, n => n % 2);
-  console.log(pares);
-
-
-  pol1 = new Conjunto(polis, 1, 500);
-  pol2 = new Conjunto(polis, 500, 1000);
-  pol3 = new Conjunto(polis, 1000, 1500);
-
+  var concatRang = Rangos.crearRango(100);
+  for (var i = 0; i < concatRang.length; i++) {
+    pol[i] = new Conjunto(polis, concatRang[i][0], concatRang[i][1]);
+  }
 }
 
 function draw(){
-  pol1.pintar();
-  pol2.pintar();
-  pol3.pintar();
+  for (var i = 0; i < pol.length; i++) {
+    pol[i].pintar();
+  }
+}
+
+class Rangos{
+  static crearRango(numero){
+    let simultaneamente = polygons.length / numeroConguntos;
+    let rang = int(_.range(1, polygons.length, simultaneamente));
+    let newRang = _.drop(rang);
+    let concatRang = _.map(rang, function(v, i) { return [v, newRang[i]]; });
+    concatRang[concatRang.length-1][1] = polygons.length-1;
+    return concatRang;
+  }
 }
 
 class Conjunto {
