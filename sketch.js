@@ -1,12 +1,7 @@
 var colorThief = new ColorThief();
 var canvas, polygons;
-var pol1, pol2, pol3, pol4, pol5, pol6, pol7, pol8;
 var polis = [];
 var pol = []
-var numeroConguntos = 100;
-var simultaneamente;
-
-
 
 function preload() {
   polygons = loadJSON("plano5.json");
@@ -15,10 +10,14 @@ function preload() {
 function setup() {
   canvas = createCanvas(1024, 768);
   smooth(2);
-  for (let i = 0; i < 4000; i++) {
-    polis[i] =new Voronoi(polygons[i]);
-  }
-  var concatRang = Rangos.crearRango(100);
+  const numeroPoligonos = polygons.length;
+  polygons = _.sortBy(polygons, [function(o) { return o[1]; }])
+  console.log(polygons);
+
+
+  polis = Utils.crearVoronois();
+  var concatRang = Utils.crearRango(10);
+
   for (var i = 0; i < concatRang.length; i++) {
     pol[i] = new Conjunto(polis, concatRang[i][0], concatRang[i][1]);
   }
@@ -30,14 +29,26 @@ function draw(){
   }
 }
 
-class Rangos{
+function mousePressed(){
+  clear();
+}
+
+class Utils{
   static crearRango(numero){
-    let simultaneamente = polygons.length / numeroConguntos;
+    let simultaneamente = polygons.length / numero;
     let rang = int(_.range(1, polygons.length, simultaneamente));
     let newRang = _.drop(rang);
     let concatRang = _.map(rang, function(v, i) { return [v, newRang[i]]; });
     concatRang[concatRang.length-1][1] = polygons.length-1;
     return concatRang;
+  }
+
+  static crearVoronois(){
+    let arrayPolis = [];
+    for (let i = 0; i < 4000; i++) {
+       arrayPolis[i] =new Voronoi(polygons[i]);
+    }
+    return arrayPolis;
   }
 }
 
