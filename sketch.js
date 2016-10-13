@@ -2,9 +2,10 @@ var colorThief = new ColorThief();
 var canvas, polygons;
 var polis = [];
 var pol = []
+var colores = [];
 
 function preload() {
-  polygons = loadJSON("plano5.json");
+  polygons = loadJSON("plano37.json");
 }
 
 function setup() {
@@ -12,11 +13,33 @@ function setup() {
   smooth(2);
   const numeroPoligonos = polygons.length;
   polygons = _.sortBy(polygons, [function(o) { return o[1]; }])
-  console.log(polygons);
+
+var sortedRgbArr = polygons.map(function(c, i) {
+  // Convert to HSL 1nd keep track of original indices
+  return {color: Utils.rgbToHsl(c[0]), index: i};
+}).sort(function(c1, c2) {
+  // Sort by hue
+  return c1.color[0] - c2.color[0];
+}).map(function(data) {
+  // Retrieve original RGB color
+  //console.log(polygons[data.index]);
+  return polygons[data.index];
+});
+
+//console.log(polygons[0][0]);
+console.log(polygons[1][0]);
+// console.log(polygons[2][0]);
+//console.log(sortedRgbArr[0][0]);
+console.log(sortedRgbArr[1][0]);
+// console.log(sortedRgbArr[2][0]);
+
+polygons = sortedRgbArr;
+
+
 
 
   polis = Utils.crearVoronois();
-  var concatRang = Utils.crearRango(10);
+  var concatRang = Utils.crearRango(1);
 
   for (var i = 0; i < concatRang.length; i++) {
     pol[i] = new Conjunto(polis, concatRang[i][0], concatRang[i][1]);
@@ -25,6 +48,22 @@ function setup() {
 
 function draw(){
   for (var i = 0; i < pol.length; i++) {
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
+    pol[i].pintar();
     pol[i].pintar();
   }
 }
@@ -49,6 +88,35 @@ class Utils{
        arrayPolis[i] =new Voronoi(polygons[i]);
     }
     return arrayPolis;
+  }
+
+  static rgbToHsl(c) {
+    var r = c[0] / 255,
+        g = c[1] / 255,
+        b = c[2] / 255;
+    var max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if (max == min) {
+      h = s = 0; // achromatic
+    } else {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
+      }
+      h /= 6;
+    }
+    return new Array(h * 360, s * 100, l * 100);
   }
 }
 
