@@ -4,51 +4,20 @@ var polis = [];
 var pol = []
 var colores = [];
 var fft, noise, filter, reverb;
-
-
-var FizzyText = function() {
-  this.speed = 2;
-  this.explode = function(){
-      clear();
-      noise.amp(0, 0.2)
-  }
-};
-
-window.onload = function() {
-  var text = new FizzyText();
-  var gui = new dat.GUI({autoPlace: false});
-  var customContainer = document.getElementById('interfaz');
-  customContainer.appendChild(gui.domElement);
-  gui.add(text, 'speed', 1, 20);
-  gui.add(text, 'explode');
-};
+var gui;
 
 function preload() {
-  polygons = loadJSON("./planos/plano18.json");
+  polygons = loadJSON("./planos/plano22.json");
 }
 
-
-
 function setup() {
+  const numeroPoligonos = polygons.length;
   canvas = createCanvas(1024, 768);
   canvas.parent('marte');
   smooth(2);
-  const numeroPoligonos = polygons.length;
-  polygons = _.sortBy(polygons, [function(o) { return o[1]; }])
+  gui = new Gui();
 
-var sortedRgbArr = polygons.map(function(c, i) {
-  // Convert to HSL 1nd keep track of original indices
-  return {color: Utils.rgbToHsl(c[0]), index: i};
-}).sort(function(c1, c2) {
-  // Sort by hue
-  return c1.color[0] - c2.color[0];
-}).map(function(data) {
-  // Retrieve original RGB color
-  //console.log(polygons[data.index]);
-  return polygons[data.index];
-});
-
-  polygons = sortedRgbArr;
+  polygons = Utils.ordenarPorHsl(polygons);
   polis = Utils.crearVoronois();
   var concatRang = Utils.crearRango(1);
 
@@ -71,13 +40,14 @@ var sortedRgbArr = polygons.map(function(c, i) {
 
 function draw(){
   for (var i = 0; i < pol.length; i++) {
-    for (var x = 0; x < 17; x++) {
+    for (var x = 0; x < 24; x++) {
       pol[i].pintar();
     }
   }
 }
 
 class Utils{
+
   static crearRango(numero){
     let simultaneamente = polygons.length / numero;
     let rang = int(_.range(1, polygons.length, simultaneamente));
@@ -95,7 +65,23 @@ class Utils{
     return arrayPolis;
   }
 
-  static rgbToHsl(c) {
+  static  ordenarPorHsl(polygons){
+    polygons = _.sortBy(polygons, [function(o) { return o[1]; }])
+    let result = polygons.map(function(c, i) {
+      // Convert to HSL 1nd keep track of original indices
+      return {color: Utils.rgbToHsl(c[0]), index: i};
+    }).sort(function(c1, c2) {
+      // Sort by hue
+      return c1.color[0] - c2.color[0];
+    }).map(function(data) {
+      // Retrieve original RGB color
+      //console.log(polygons[data.index]);
+      return polygons[data.index];
+    });
+    return result;
+  }
+
+  static rgbToHsl(c){
     var r = c[0] / 255,
         g = c[1] / 255,
         b = c[2] / 255;
@@ -122,6 +108,26 @@ class Utils{
       h /= 6;
     }
     return new Array(h * 360, s * 100, l * 100);
+  }
+}
+
+class Gui{
+  constructor(){
+    let text = new Controles();
+    this.gui = new dat.GUI({autoPlace: false});
+    this.customContainer = document.getElementById('interfaz');
+    this.customContainer.appendChild(this.gui.domElement);
+    this.gui.add(text, 'speed', 1, 20);
+    this.gui.add(text, 'explode');
+  }
+}
+
+class Controles {
+  constructor() {
+    this.speed = 0.8;
+    this.explode = function(){
+      clear();
+    }
   }
 }
 
