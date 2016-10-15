@@ -3,15 +3,16 @@ var canvas, polygons;
 var polis = [];
 var pol = []
 var colores = [];
-var fft, noise, filter, reverb;
+var fft, ruido, filtro, reverb, sonoridad;
 var gui;
+var numerRango = 1;
+
 
 function preload() {
-  polygons = loadJSON("./planos/plano22.json");
+  polygons = loadJSON("./planos/plano37.json");
 }
 
 function setup() {
-  const numeroPoligonos = polygons.length;
   canvas = createCanvas(1024, 768);
   canvas.parent('marte');
   smooth(2);
@@ -19,23 +20,12 @@ function setup() {
 
   polygons = Utils.ordenarPorHsl(polygons);
   polis = Utils.crearVoronois();
-  var concatRang = Utils.crearRango(1);
+  let rangoDeVoronois = Utils.crearRango(1);
 
-  for (var i = 0; i < concatRang.length; i++) {
-    pol[i] = new Conjunto(polis, concatRang[i][0], concatRang[i][1]);
+  for (var i = 0; i < rangoDeVoronois.length; i++) {
+    pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
   }
-
- filter = new p5.BandPass();
- noise = new p5.Noise();
-
- // disconnect unfiltered noise,
- // and connect to filter
- noise.disconnect();
- noise.connect(filter);
- noise.start();
-
- fft = new p5.FFT();
-
+  sonoridad = new PaisajeSonoro();
 }
 
 function draw(){
@@ -46,8 +36,18 @@ function draw(){
   }
 }
 
-class Utils{
+class PaisajeSonoro {
+  constructor() {
+    filtro = this.fitro = new p5.BandPass();
+    ruido = this.ruido = new p5.Noise();
 
+    this.ruido.disconnect();
+    this.ruido.connect(filtro);
+    this.ruido.start();
+  }
+}
+
+class Utils{
   static crearRango(numero){
     let simultaneamente = polygons.length / numero;
     let rang = int(_.range(1, polygons.length, simultaneamente));
@@ -160,8 +160,8 @@ class Voronoi {
     beginShape();
     fill(this.color);
     var freq = map(this.color[1], 0, 255, 20, 4000);
-    filter.freq(freq);
-    filter.res(50);
+    filtro.freq(freq);
+    filtro.res(50);
     //empezamos en 1 para oviar el color
     for (let k = 1, kL = singlegon.length; k < kL; k++){
       vertex(singlegon[k][0], singlegon[k][1]);
