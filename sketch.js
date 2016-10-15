@@ -3,13 +3,35 @@ var canvas, polygons;
 var polis = [];
 var pol = []
 var colores = [];
+var fft, noise, filter, reverb;
+
+
+var FizzyText = function() {
+  this.speed = 2;
+  this.explode = function(){
+      clear();
+      noise.amp(0, 0.2)
+  }
+};
+
+window.onload = function() {
+  var text = new FizzyText();
+  var gui = new dat.GUI({autoPlace: false});
+  var customContainer = document.getElementById('interfaz');
+  customContainer.appendChild(gui.domElement);
+  gui.add(text, 'speed', 1, 20);
+  gui.add(text, 'explode');
+};
 
 function preload() {
-  polygons = loadJSON("plano37.json");
+  polygons = loadJSON("./planos/plano18.json");
 }
+
+
 
 function setup() {
   canvas = createCanvas(1024, 768);
+  canvas.parent('marte');
   smooth(2);
   const numeroPoligonos = polygons.length;
   polygons = _.sortBy(polygons, [function(o) { return o[1]; }])
@@ -26,50 +48,33 @@ var sortedRgbArr = polygons.map(function(c, i) {
   return polygons[data.index];
 });
 
-//console.log(polygons[0][0]);
-console.log(polygons[1][0]);
-// console.log(polygons[2][0]);
-//console.log(sortedRgbArr[0][0]);
-console.log(sortedRgbArr[1][0]);
-// console.log(sortedRgbArr[2][0]);
-
-polygons = sortedRgbArr;
-
-
-
-
+  polygons = sortedRgbArr;
   polis = Utils.crearVoronois();
   var concatRang = Utils.crearRango(1);
 
   for (var i = 0; i < concatRang.length; i++) {
     pol[i] = new Conjunto(polis, concatRang[i][0], concatRang[i][1]);
   }
+
+ filter = new p5.BandPass();
+ noise = new p5.Noise();
+
+ // disconnect unfiltered noise,
+ // and connect to filter
+ noise.disconnect();
+ noise.connect(filter);
+ noise.start();
+
+ fft = new p5.FFT();
+
 }
 
 function draw(){
   for (var i = 0; i < pol.length; i++) {
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
-    pol[i].pintar();
+    for (var x = 0; x < 17; x++) {
+      pol[i].pintar();
+    }
   }
-}
-
-function mousePressed(){
-  clear();
 }
 
 class Utils{
@@ -148,6 +153,9 @@ class Voronoi {
     stroke(255);
     beginShape();
     fill(this.color);
+    var freq = map(this.color[1], 0, 255, 20, 4000);
+    filter.freq(freq);
+    filter.res(50);
     //empezamos en 1 para oviar el color
     for (let k = 1, kL = singlegon.length; k < kL; k++){
       vertex(singlegon[k][0], singlegon[k][1]);
