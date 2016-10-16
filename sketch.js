@@ -3,13 +3,14 @@ var canvas, polygons;
 var polis = [];
 var pol = []
 var colores = [];
+var positions = [];
 var fft, ruido, filtro, reverb, sonoridad;
 var gui;
 var numerRango = 1;
 
 
 function preload() {
-  polygons = loadJSON("./planos/plano37.json");
+  polygons = loadJSON("./planos/plano28.json");
 }
 
 function setup() {
@@ -22,6 +23,7 @@ function setup() {
   polis = Utils.crearVoronois();
   let rangoDeVoronois = Utils.crearRango(1);
 
+  //TODO Tengo que ver como funciona la creación automatica de objeto en ES6
   for (var i = 0; i < rangoDeVoronois.length; i++) {
     pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
   }
@@ -36,14 +38,89 @@ function draw(){
   }
 }
 
+function mouseMoved(){
+  //let color = [53, 168, 33];
+  var size = dist(mouseX, mouseY, 0, 0);
+  let x = int(map(size,0,1250,0,4000));
+  let sonidoColor = polis[x].color;
+  //polis[x].color = color;
+  //scale(1.2,1.2);
+  //polis[x].display();
+  sonoridad.cambioFrecuencia(sonidoColor);
+}
+
 class PaisajeSonoro {
   constructor() {
     filtro = this.fitro = new p5.BandPass();
     ruido = this.ruido = new p5.Noise();
-
     this.ruido.disconnect();
     this.ruido.connect(filtro);
     this.ruido.start();
+  }
+  cambioFrecuencia(freq){
+    var freq = map(freq[1], 0, 255, 20, 2000);
+    filtro.freq(freq);
+    filtro.res(50);
+  }
+}
+
+
+class Gui{
+  constructor(){
+    let text = new Controles();
+    this.gui = new dat.GUI({autoPlace: false});
+    this.customContainer = document.getElementById('interfaz');
+    this.customContainer.appendChild(this.gui.domElement);
+    this.gui.add(text, 'speed', 1, 20);
+    this.gui.add(text, 'explode');
+  }
+}
+
+class Controles {
+  constructor() {
+    this.speed = 0.8;
+    this.explode = function(){
+      clear();
+    }
+  }
+}
+
+class Conjunto {
+  constructor(voronoi, inicio, fin) {
+    this.voronoi = voronoi;
+    this.inicio = inicio;
+    this.fin = fin;
+    this.positions = [];
+  }
+
+  pintar(){
+    if (this.inicio < this.fin) {
+      this.inicio = this.inicio + 1;
+      this.voronoi[this.inicio].display();
+    }
+  }
+}
+
+class Voronoi {
+  constructor(polygons) {
+    this.polygons = polygons;
+    this.color = polygons[0];
+    this.positions = positions;
+  }
+
+  display(){
+    strokeWeight(.3);
+    stroke(255);
+    let singlegon = this.polygons;
+    stroke(255);
+    beginShape();
+    fill(this.color);
+    sonoridad.cambioFrecuencia(this.color);
+    //empezamos en 1 para oviar el color
+    for (let k = 1, kL = singlegon.length; k < kL; k++){
+      vertex(singlegon[k][0], singlegon[k][1]);
+    }
+    endShape(CLOSE);
   }
 }
 
@@ -108,64 +185,5 @@ class Utils{
       h /= 6;
     }
     return new Array(h * 360, s * 100, l * 100);
-  }
-}
-
-class Gui{
-  constructor(){
-    let text = new Controles();
-    this.gui = new dat.GUI({autoPlace: false});
-    this.customContainer = document.getElementById('interfaz');
-    this.customContainer.appendChild(this.gui.domElement);
-    this.gui.add(text, 'speed', 1, 20);
-    this.gui.add(text, 'explode');
-  }
-}
-
-class Controles {
-  constructor() {
-    this.speed = 0.8;
-    this.explode = function(){
-      clear();
-    }
-  }
-}
-
-class Conjunto {
-  constructor(voronoi, inicio, fin) {
-    this.voronoi = voronoi;
-    this.inicio = inicio;
-    this.fin = fin;
-  }
-
-  pintar(){
-    if (this.inicio < this.fin) {
-      this.inicio = this.inicio + 1;
-      this.voronoi[this.inicio].display();
-    }
-  }
-}
-
-class Voronoi {
-  constructor(polygons) {
-    this.polygons = polygons;
-    this.color = polygons[0];
-  }
-
-  display(){
-    strokeWeight(.3);
-    stroke(255);
-    let singlegon = this.polygons;
-    stroke(255);
-    beginShape();
-    fill(this.color);
-    var freq = map(this.color[1], 0, 255, 20, 4000);
-    filtro.freq(freq);
-    filtro.res(50);
-    //empezamos en 1 para oviar el color
-    for (let k = 1, kL = singlegon.length; k < kL; k++){
-      vertex(singlegon[k][0], singlegon[k][1]);
-    }
-    endShape(CLOSE);
   }
 }
