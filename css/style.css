@@ -310,8 +310,16 @@ body {
       font-size: 60px;
       text-transform: lowercase;;
   }
-
+	.about {
+		color: rgb(255, 255, 255);
+	}
+	.about h3 {
+		font-family: "Bourgeois W00 Light Alt"!important;
+		font-size: 30px;
+		text-transform: lowercase;;
+	}
   .img {
+		margin-top: 250px;
     float: left;
     margin-right: 150px;
   }

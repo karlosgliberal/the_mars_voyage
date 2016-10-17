@@ -1,16 +1,20 @@
-var colorThief = new ColorThief();
 var canvas, polygons;
 var polis = [];
 var pol = []
 var colores = [];
 var positions = [];
+var posicionIndice = [];
 var fft, ruido, filtro, reverb, sonoridad;
 var gui;
 var numerRango = 1;
-
+var env;
+var delay;
+var osc;
+var aleatorio;
 
 function preload() {
-  polygons = loadJSON("./planos/plano28.json");
+  aleatorio = int(random(1,38));
+  polygons = loadJSON("./planos/plano"+aleatorio+".json");
 }
 
 function setup() {
@@ -18,69 +22,71 @@ function setup() {
   canvas.parent('marte');
   smooth(2);
   gui = new Gui();
-
-  polygons = Utils.ordenarPorHsl(polygons);
-  polis = Utils.crearVoronois();
-  let rangoDeVoronois = Utils.crearRango(1);
-
-  //TODO Tengo que ver como funciona la creación automatica de objeto en ES6
-  for (var i = 0; i < rangoDeVoronois.length; i++) {
-    pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
-  }
-  sonoridad = new PaisajeSonoro();
+  Utils.init();
 }
 
 function draw(){
   for (var i = 0; i < pol.length; i++) {
-    for (var x = 0; x < 24; x++) {
+    for (var x = 0; x < gui.text.speed; x++) {
       pol[i].pintar();
     }
   }
 }
 
 function mouseMoved(){
-  //let color = [53, 168, 33];
   var size = dist(mouseX, mouseY, 0, 0);
   let x = int(map(size,0,1250,0,4000));
   let sonidoColor = polis[x].color;
-  //polis[x].color = color;
-  //scale(1.2,1.2);
-  //polis[x].display();
+  for (var i = 0; i < 1000; i++) {
+    polis[x].display();
+  }
   sonoridad.cambioFrecuencia(sonidoColor);
 }
 
 class PaisajeSonoro {
   constructor() {
-    filtro = this.fitro = new p5.BandPass();
+    filtro = this.fitro = new p5.LowPass();
     ruido = this.ruido = new p5.Noise();
+    delay = this.delay = new p5.Delay();
+
     this.ruido.disconnect();
     this.ruido.connect(filtro);
+    this.delay.process(ruido, .09, .30, 450)
     this.ruido.start();
   }
   cambioFrecuencia(freq){
-    var freq = map(freq[1], 0, 255, 20, 2000);
+    var freq = map(freq[1], 0, 255, 30, 500);
     filtro.freq(freq);
-    filtro.res(50);
+    filtro.res(60);
   }
 }
 
-
 class Gui{
   constructor(){
-    let text = new Controles();
+    this.text = new Controles();
     this.gui = new dat.GUI({autoPlace: false});
     this.customContainer = document.getElementById('interfaz');
     this.customContainer.appendChild(this.gui.domElement);
-    this.gui.add(text, 'speed', 1, 20);
-    this.gui.add(text, 'explode');
+    this.gui.add(this.text, 'speed', 1, 80);
+    this.gui.add(this.text, 'rangos', 1, 20);
+    this.gui.add(this.text, 'nuevoMapa');
+    this.gui.add(this.text, 'reset');
   }
 }
 
 class Controles {
   constructor() {
-    this.speed = 0.8;
-    this.explode = function(){
+    this.speed = 8;
+    this.rangos = 1;
+    this.nuevoMapa = function(){
       clear();
+      ruido.stop();
+      Utils.nuevoMapa();
+    }
+    this.reset = function(){
+      clear();
+      ruido.stop();
+      Utils.init();
     }
   }
 }
@@ -99,13 +105,16 @@ class Conjunto {
       this.voronoi[this.inicio].display();
     }
   }
+
 }
 
 class Voronoi {
   constructor(polygons) {
     this.polygons = polygons;
     this.color = polygons[0];
-    this.positions = positions;
+    let puntoEje = createVector(ceil(polygons[polygons.length-1][0]), ceil(polygons[polygons.length-1][1]));
+    this.positions = puntoEje;
+    positions.push(puntoEje);
   }
 
   display(){
@@ -121,6 +130,7 @@ class Voronoi {
       vertex(singlegon[k][0], singlegon[k][1]);
     }
     endShape(CLOSE);
+    //punto del poligono;
   }
 }
 
@@ -158,6 +168,23 @@ class Utils{
     return result;
   }
 
+  static init(){
+    polygons = Utils.ordenarPorHsl(polygons);
+    polis = Utils.crearVoronois();
+    let rangoDeVoronois = Utils.crearRango(gui.text.rango);
+    //TODO Tengo que ver como funciona la creación automatica de objeto en ES6
+    for (var i = 0; i < rangoDeVoronois.length; i++) {
+      pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
+    }
+    sonoridad = new PaisajeSonoro();
+
+  }
+  static nuevoMapa(){
+    aleatorio = int(random(1,38));
+    polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
+      Utils.init();
+    });
+  }
   static rgbToHsl(c){
     var r = c[0] / 255,
         g = c[1] / 255,
