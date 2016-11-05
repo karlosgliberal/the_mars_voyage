@@ -13,7 +13,8 @@ var osc;
 var aleatorio;
 
 function preload() {
-  aleatorio = int(random(1,38));
+  aleatorio = int(random(1,842));
+  //polygons = loadJSON("./planos2/plano839.json");
   polygons = loadJSON("./planos/plano"+aleatorio+".json");
 }
 
@@ -55,7 +56,7 @@ class PaisajeSonoro {
     this.ruido.start();
   }
   cambioFrecuencia(freq){
-    var freq = map(freq[1], 0, 255, 30, 500);
+    var freq = map(freq[2], 0, 255, 30, 500);
     filtro.freq(freq);
     filtro.res(60);
   }
@@ -105,7 +106,6 @@ class Conjunto {
       this.voronoi[this.inicio].display();
     }
   }
-
 }
 
 class Voronoi {
@@ -131,7 +131,7 @@ class Voronoi {
     }
     endShape(CLOSE);
     //punto del poligono;
-  }
+  };
 }
 
 class Utils{
@@ -159,7 +159,7 @@ class Utils{
       return {color: Utils.rgbToHsl(c[0]), index: i};
     }).sort(function(c1, c2) {
       // Sort by hue
-      return c1.color[0] - c2.color[0];
+      return c1.color[2] - c2.color[2];
     }).map(function(data) {
       // Retrieve original RGB color
       //console.log(polygons[data.index]);
@@ -180,7 +180,7 @@ class Utils{
 
   }
   static nuevoMapa(){
-    aleatorio = int(random(1,38));
+    aleatorio = int(random(1,839));
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       Utils.init();
     });

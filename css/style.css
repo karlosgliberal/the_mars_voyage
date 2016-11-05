@@ -353,7 +353,30 @@ body {
   url("0eac980ecc9f8db247cc4bc7d60f0da3.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
   url("0eac980ecc9f8db247cc4bc7d60f0da3.svg#Bourgeois W00 Light Alt") format("svg"); /* iOS 4.1- */
 }
+	.cabecera{
+		position: relative;
+		top: 25%;
+		width: 100%;
+		text-align: center;
+		margin-top: 30px;
 
+	}
+	.capa {
+		position: relative;
+		top: 25%;
+		width: 100%;
+		text-align: center;
+		margin-top: 30px;
+	}
+	.content p {
+   font-family: "Bourgeois W00 Light Alt"!important;
+    font-size: 19px;
+		width: 100%;
+		text-align: justify;
+		margin-left: 10px;
+		margin-right: 10px;
+    color: rgb(255, 255, 255);
+	}
   .movida {
     color: rgb(255, 255, 255);
   }

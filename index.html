@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>moon</title>
+    <title>The mars voyage</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.1/dat.gui.js" type="text/javascript"></script>
@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
     </script>
     <script src="color-thief.js" type="text/javascript"></script>
-    <script src="sketch.js" type="text/javascript"></script>
+    <script src="build/sketch.js" type="text/javascript"></script>
     <script>
       function openNav() {
           document.getElementById("myNav").style.width = "100%";
@@ -27,18 +27,40 @@
     <style> body {padding: 0; margin: 0;} canvas {vertical-align: center; horizontal-aling: center;} </style>
   </head>
   <body>
+  <div class="grid grid-pad">
   <div id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="overlay-content">
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
+    <div class="col-1-1">
+      <div class="cabecera">
+        <a href="javascript:void(0)" onclick="closeNav()">
+          <img src="./images/img_cabecera.jpg" alt="" />
+       </a>
+      </div>
     </div>
+        <div class="col-1-2">
+          <div class="content capa movida">
+            <h1>The mars voyage</h1>
+            <p>
+¿Y qué necesidad tenemos de viajar a marte? ¿Pero que hay en marte?
+Marte ese planeta rojo, lejano, misterioso, hostil, pero nos atrae, insistimos, queremos pisar marte. HiRISE es la cámara de alta resolución que viaja a bordo de la sonda MRO, lleva desde el 2008 haciendo fotos del planeta rojo fotos que nos añaden imágenes a nuestra distorsionada idea de los viajes espaciales. The mars voayage, es un paseo por marte, una interpretación de marte, este viaje es absurdo, costos, inquietante, pero hermoso y apasionante.
+            </p>
+            <p>
+    The mars voyage existe  gracias a NASA/JPL/University of Arizona o NASA/JPL/La Universidad de Arizona. Que a puesto en dominio público el material gráfico que HiRISE a capturado para nosotros. P5js es el lienzo, la gubia, el cincel con el que hemos repensado marte. En interzonas decimos: <i> libera rápido, libera pronto y haz un bonito cadáver</i>. el código del proyecto está aquí.
+            </p>
+          </div>
+       </div>
+        <div class="col-1-2">
+          <div class="content capa movida">
+            <h1>The mars voyage</h1>
+            <p>
+              ¿Y qué necesidad tenemos de viajar a marte? ¿Pero que hay en marte?
+Marte ese planeta rojo, lejano, misterioso, hostil,  pero nos atrae, insistimos, queremos pisar marte. HiRISE es la cámara de alta resolución que viaja a bordo de la sonda MRO, lleva desde el 2008 haciendo fotos del planeta rojo fotos que nos añaden imágenes a nuestra distorsionada idea de los viajes espaciales. The mars voayage, es un paseo por marte, es un viaje a marte, una interpretación de marte, este viaje es absurdo, costos, inquietante, pero hermoso y apasionante.
+            </p>
+          </div>
+       </div>
   </div>
 
 
-    <div class="grid grid-pad">
     <div class="col-3-12">
        <div class="content movida">
          <h1>The mars voyage</h>
