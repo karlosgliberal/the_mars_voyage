@@ -4,7 +4,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-//The mars voyage karlos g liberal (@patxangas) http://interzonas.info
+//The mars voyage karlos g liberal (@patxangas) http://interzonas.info 3
 var canvas, polygons;
 var polis = [];
 var pol = [];
