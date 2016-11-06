@@ -1,4 +1,4 @@
-//The mars voyage karlos g liberal (@patxangas) http://interzonas.info 4
+//The mars voyage karlos g liberal (@patxangas) http://interzonas.info 5
 var canvas, polygons;
 var polis = [];
 var pol = []
