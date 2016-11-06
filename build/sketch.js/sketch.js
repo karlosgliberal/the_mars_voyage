@@ -4,6 +4,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//The mars voyage karlos g liberal (@patxangas) http://interzonas.info
 var canvas, polygons;
 var polis = [];
 var pol = [];
@@ -47,6 +48,7 @@ function mouseMoved() {
   for (var i = 0; i < 1000; i++) {
     polis[x].display();
   }
+  console.log(polis);
   sonoridad.cambioFrecuencia(sonidoColor);
 }
 
@@ -67,7 +69,7 @@ var PaisajeSonoro = function () {
   _createClass(PaisajeSonoro, [{
     key: "cambioFrecuencia",
     value: function cambioFrecuencia(freq) {
-      var freq = map(freq[2], 0, 255, 30, 500);
+      var freq = map(freq[1], 0, 255, 30, 500);
       filtro.freq(freq);
       filtro.res(60);
     }
