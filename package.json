@@ -13,6 +13,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-print": "^2.0.1",
     "gulp-rollup": "^1.7.0",
+    "gulp-ssh": "^0.6.0",
     "gulp-webserver": "^0.9.1"
   },
   "scripts": {
