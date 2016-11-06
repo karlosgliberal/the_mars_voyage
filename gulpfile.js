@@ -2,8 +2,12 @@ var fs = require('fs');
 var gulp = require('gulp'),
     print = require('gulp-print'),
     babel = require('gulp-babel'),
-    webserver = require('gulp-webserver'),
+    shell = require('gulp-shell'),
+    webserver = require('gulp-webserver');
 
+gulp.task('shell', shell.task([
+  './deploy.sh'
+]));
 
 gulp.task('build', function() {
     return gulp.src('sketch.js')
