@@ -58,7 +58,7 @@ class PaisajeSonoro {
     this.ruido.start();
   }
   cambioFrecuencia(freq){
-    var freq = map(freq[2], 0, 255, 30, 500);
+    var freq = map(freq[0], 0, 255, 30, 500);
     filtro.freq(freq);
     filtro.res(60);
   }
