@@ -57,19 +57,28 @@ function mouseMoved(){
 
 class PaisajeSonoro {
   constructor() {
-    filtro = this.fitro = new p5.LowPass();
-    ruido = this.ruido = new p5.Noise();
-    delay = this.delay = new p5.Delay();
+    // filtro = this.fitro = new p5.LowPass();
+    // ruido = this.ruido = new p5.Noise();
+    // delay = this.delay = new p5.Delay();
+    //
+    // this.ruido.disconnect();
+    // this.ruido.connect(filtro);
+    // this.delay.process(ruido, .09, .30, 450)
+    // this.ruido.start();
+    env = new p5.Env();
+    env.setADSR(attackTime, decayTime, susPercent, releaseTime);
+    env.setRange(attackLevel, releaseLevel);
 
-    this.ruido.disconnect();
-    this.ruido.connect(filtro);
-    this.delay.process(ruido, .09, .30, 450)
-    this.ruido.start();
+    triOsc = new p5.Oscillator('triangle');
+    triOsc.amp(env);
+    triOsc.start();
+    triOsc.freq(220);
   }
   cambioFrecuencia(freq){
-    var freq = map(freq[0], 0, 255, 30, 500);
-    filtro.freq(freq);
-    filtro.res(60);
+    env.play();
+    // var freq = map(freq[0], 0, 255, 30, 500);
+    // filtro.freq(freq);
+    // filtro.res(60);
   }
 }
 

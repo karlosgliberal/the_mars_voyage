@@ -19,6 +19,14 @@ var delay;
 var osc;
 var aleatorio;
 
+//Soudn osc
+var attackLevel = 1.0;
+var releaseLevel = 0;
+var attackTime = 0.001;
+var decayTime = 0.2;
+var susPercent = 0.2;
+var releaseTime = 0.5;
+
 function preload() {
   aleatorio = int(random(1, 842));
   //polygons = loadJSON("./planos2/plano839.json");
