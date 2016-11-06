@@ -1,4 +1,4 @@
-//The mars voyage karlos g liberal (@patxangas) http://interzonas.info 6
+//The mars voyage karlos g liberal (@patxangas) http://interzonas.info 7
 var canvas, polygons;
 var polis = [];
 var pol = []
@@ -16,10 +16,12 @@ var aleatorio;
 //Soudn osc
 var attackLevel = 1.0;
 var releaseLevel = 0;
+
 var attackTime = 0.001
 var decayTime = 0.2;
 var susPercent = 0.2;
-var releaseTime = 0.5;
+var releaseTime = 0.9;
+var env, triOsc;
 
 
 function preload() {
@@ -51,34 +53,31 @@ function mouseMoved(){
   for (var i = 0; i < 1000; i++) {
     polis[x].display();
   }
-  console.log(polis);
   sonoridad.cambioFrecuencia(sonidoColor);
 }
 
 class PaisajeSonoro {
   constructor() {
-    // filtro = this.fitro = new p5.LowPass();
-    // ruido = this.ruido = new p5.Noise();
-    // delay = this.delay = new p5.Delay();
-    //
-    // this.ruido.disconnect();
-    // this.ruido.connect(filtro);
-    // this.delay.process(ruido, .09, .30, 450)
-    // this.ruido.start();
-    env = new p5.Env();
-    env.setADSR(attackTime, decayTime, susPercent, releaseTime);
-    env.setRange(attackLevel, releaseLevel);
+    filtro = this.fitro = new p5.LowPass();
+    triOsc = this.triOsc = new p5.Oscillator('sine');
+    delay = this.delay = new p5.Delay();
+    this.triOsc.disconnect();
+    this.triOsc.connect(filtro);
+    this.delay.process(triOsc, .08, .50, 300);
+    ruido = this.ruido = new p5.Noise();
+    this.ruido.disconnect();
+    this.ruido.connect(filtro);
 
-    triOsc = new p5.Oscillator('triangle');
-    triOsc.amp(env);
+    this.ruido.connect(triOsc);
+    triOsc.amp(1.2, 0.5);
     triOsc.start();
-    triOsc.freq(220);
+    this.ruido.start();
   }
   cambioFrecuencia(freq){
-    env.play();
-    // var freq = map(freq[0], 0, 255, 30, 500);
-    // filtro.freq(freq);
-    // filtro.res(60);
+    var freq = map(freq[0], 0, 255, 0, 260);
+    filtro.freq(freq);
+    triOsc.freq(randomGaussian(freq/2,freq));
+    //filtro.res(freq);
   }
 }
 
@@ -101,12 +100,11 @@ class Controles {
     this.rangos = 1;
     this.nuevoMapa = function(){
       clear();
-      ruido.stop();
+      //ruido.stop();
       Utils.nuevoMapa();
     }
     this.reset = function(){
       clear();
-      ruido.stop();
       Utils.init();
     }
   }
@@ -124,6 +122,9 @@ class Conjunto {
     if (this.inicio < this.fin) {
       this.inicio = this.inicio + 1;
       this.voronoi[this.inicio].display();
+      if(this.inicio > 3950){
+        triOsc.amp(0.0);
+      }
     }
   }
 }
@@ -132,9 +133,6 @@ class Voronoi {
   constructor(polygons) {
     this.polygons = polygons;
     this.color = polygons[0];
-    let puntoEje = createVector(ceil(polygons[polygons.length-1][0]), ceil(polygons[polygons.length-1][1]));
-    this.positions = puntoEje;
-    positions.push(puntoEje);
   }
 
   display(){
@@ -172,17 +170,13 @@ class Utils{
     return arrayPolis;
   }
 
-  static  ordenarPorHsl(polygons){
+  static ordenarPorHsl(polygons){
     polygons = _.sortBy(polygons, [function(o) { return o[1]; }])
     let result = polygons.map(function(c, i) {
-      // Convert to HSL 1nd keep track of original indices
       return {color: Utils.rgbToHsl(c[0]), index: i};
     }).sort(function(c1, c2) {
-      // Sort by hue
       return c1.color[2] - c2.color[2];
     }).map(function(data) {
-      // Retrieve original RGB color
-      //console.log(polygons[data.index]);
       return polygons[data.index];
     });
     return result;
