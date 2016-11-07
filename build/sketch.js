@@ -76,8 +76,8 @@ var PaisajeSonoro = function () {
     this.ruido.connect(filtro);
 
     this.ruido.connect(triOsc);
-    triOsc.amp(1.2, 0.5);
-    triOsc.start();
+    this.triOsc.amp(1.2, 0.5);
+    this.triOsc.start();
     this.ruido.start();
   }
 
