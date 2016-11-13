@@ -132,7 +132,6 @@ var Controles = function Controles() {
   this.onlyNoise = true;
   this.nuevoMapa = function () {
     clear();
-    //ruido.stop();
     Utils.nuevoMapa();
   };
   this.reset = function () {
