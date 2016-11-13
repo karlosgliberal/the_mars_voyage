@@ -65,15 +65,18 @@ class PaisajeSonoro {
     filtro = this.fitro = new p5.LowPass();
     triOsc = this.triOsc = new p5.Oscillator('sine');
     delay = this.delay = new p5.Delay();
+    ruido = this.ruido = new p5.Noise();
+
     this.triOsc.disconnect();
     this.triOsc.connect(filtro);
     this.delay.process(triOsc, .08, .50, 300);
-    ruido = this.ruido = new p5.Noise();
+
     this.ruido.disconnect();
     this.ruido.connect(filtro);
-
     this.ruido.connect(triOsc);
+
     this.triOsc.amp(1.2, 0.5);
+
     this.triOsc.start();
     this.ruido.start();
   }
