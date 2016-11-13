@@ -111,8 +111,7 @@ class Gui{
 
 class Controles {
   constructor() {
-    let speedRandom = random(4,40);
-    this.speed = speedRandom;
+    this.speed = 10;
     this.rangos = 1;
     this.disableLoopMap = true;
     this.onlyNoise = true;
@@ -223,6 +222,7 @@ class Utils{
     aleatorio = int(random(39,839));
     let intervalNumber = this.devuelveNombreMapa(aleatorio);
     sonoridad.stop();
+    gui.text.speed
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clear()
       clearInterval(intervalNumber);
