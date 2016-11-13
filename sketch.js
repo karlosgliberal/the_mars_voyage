@@ -213,6 +213,7 @@ class Utils{
     text("loading...",200,200);
 
     var cararTexto = setInterval(function(){
+      text("", 200, 200);
       text(alphabet[random(0,24)], 200, 200);
     }, 40);
 
