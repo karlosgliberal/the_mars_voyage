@@ -6,6 +6,7 @@
 ###Demo
 [http://themarsvoyage.interzonas.info](themarsvoyage.interzonas.info)
 
+###info
 Este proyecto es una interpretación de las imágenes que obtiene la cámara [HiRISE]("http://www.uahirise.org/katalogos.php") de la sonda MRO. Esta sonda lleva desde el 2008 sacando fotos y ahora están en dominio publico para su uso.
 
 The mars voyage se ha realizado con [p5.js](http://p5.js) esta herramienta de la funcación processing esta pensada para fucionar con un navegador.
