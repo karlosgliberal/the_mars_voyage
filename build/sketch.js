@@ -260,7 +260,7 @@ var Utils = function () {
         var randomTextNumber = int(random(0, 24));
         text("", 200, 200);
         text(alphabet[randomTextNumber], 200, 200);
-      }, 40);
+      }, 200);
 
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         clear();
