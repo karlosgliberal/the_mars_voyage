@@ -237,7 +237,12 @@ var Utils = function () {
       var result = polygons.map(function (c, i) {
         return { color: Utils.rgbToHsl(c[0]), index: i };
       }).sort(function (c1, c2) {
-        return c2.color[2] - c1.color[2];
+        var ordenRnd = int(random(0, 1));
+        if (ordenRnd === 0) {
+          return c2.color[2] - c1.color[2];
+        } else {
+          return c1.color[2] - c2.color[2];
+        }
       }).map(function (data) {
         return polygons[data.index];
       });
