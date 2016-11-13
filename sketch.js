@@ -264,7 +264,7 @@ class Utils{
     textSize(65);
     let cararTexto = setInterval(function(){
       clear()
-      let randomTextNumber = int(random(0, 24));
+      let randomTextNumber = int(random(0, 75));
       text(alphabet[randomTextNumber],  width / 2-220, height / 2);
     }, 100);
     return cararTexto;
