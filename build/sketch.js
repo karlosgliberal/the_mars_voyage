@@ -252,8 +252,7 @@ var Utils = function () {
       var alphabet = ["Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu"];
       textFont(fuente);
       textSize(22);
-      text("loading...", (windowWidth - width) / 2, (windowHeight - height) / 2);
-
+      text("loading...", width / 2, height / 2);
       var cararTexto = setInterval(function () {
         console.log("movida");
         clear();
