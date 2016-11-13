@@ -27,12 +27,8 @@ var env, triOsc;
 function preload() {
   aleatorio = int(random(1,842));
   //polygons = loadJSON("./planos2/plano839.json");
-  let intervalNumber = Utils.devuelveNombreMapa();
   polygons = loadJSON("./planos/plano"+aleatorio+".json");
-  fuente = loadFont("css/fuente.ttf", function(){
-    clear()
-    clearInterval(intervalNumber);
-  });
+  fuente = loadFont("css/fuente.ttf");
 }
 
 function setup() {
