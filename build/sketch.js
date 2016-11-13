@@ -311,7 +311,7 @@ var Utils = function () {
       textSize(65);
       var cararTexto = setInterval(function () {
         clear();
-        var randomTextNumber = int(random(0, 24));
+        var randomTextNumber = int(random(0, 75));
         text(alphabet[randomTextNumber], width / 2 - 220, height / 2);
       }, 100);
       return cararTexto;
