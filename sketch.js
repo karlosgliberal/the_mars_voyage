@@ -27,11 +27,17 @@ var env, triOsc;
 function preload() {
   aleatorio = int(random(1,842));
   //polygons = loadJSON("./planos2/plano839.json");
+  let intervalNumber = Utils.devuelveNombreMapa();
   polygons = loadJSON("./planos/plano"+aleatorio+".json");
-  fuente = loadFont("css/fuente.ttf");
+  fuente = loadFont("css/fuente.ttf", function(){
+    clear()
+    clearInterval(intervalNumber);
+  });
 }
 
 function setup() {
+  clear()
+  clearInterval(intervalNumber);
   canvas = createCanvas(1024, 768);
   canvas.parent('marte');
   smooth(2);
