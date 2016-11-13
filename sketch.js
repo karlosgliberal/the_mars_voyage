@@ -224,6 +224,7 @@ class Utils{
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clear()
       clearInterval(intervalNumber);
+      sonoridad.stop();
       Utils.init();
     });
   }

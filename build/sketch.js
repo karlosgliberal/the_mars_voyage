@@ -91,6 +91,13 @@ var PaisajeSonoro = function () {
       this.ruido.start();
     }
   }, {
+    key: "stop",
+    value: function stop() {
+      this.triOsc.amp(0);
+      this.triOsc.stop();
+      this.ruido.stop();
+    }
+  }, {
     key: "cambioFrecuencia",
     value: function cambioFrecuencia(freq) {
       var freq = map(freq[0], 0, 255, 0, 260);
