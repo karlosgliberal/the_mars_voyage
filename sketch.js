@@ -1,5 +1,5 @@
 //The mars voyage karlos g liberal (@patxangas) http://interzonas.info 7
-var canvas, polygons, fuente;
+var canvas, polygons;
 var polis = [];
 var pol = []
 var colores = [];
@@ -27,7 +27,6 @@ var env, triOsc;
 function preload() {
   aleatorio = int(random(1,842));
   //polygons = loadJSON("./planos2/plano839.json");
-  fuente =  loadJSON("./css/0eac980ecc9f8db247cc4bc7d60f0da3.ttf");
   polygons = loadJSON("./planos/plano"+aleatorio+".json");
 }
 
@@ -209,11 +208,14 @@ class Utils{
     aleatorio = int(random(1,839));
     var alphabet = ["Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliett","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","X-ray","Yankee","Zulu"];
     var text = createP("loading");
-    textFont(fuente);
-    textSize(32)
-    text("loading", 10, 30);
+    text.position(canvas.width/2,canvas.height/2);
+    text.style("font-family", "Bourgeois W00 Light Alt");
+    text.style("color", "#FFFFFF");
+    text.style("font-size", "18pt");
+    text.style("padding", "10px");
     setInterval(function(){
       console.log(text);
+    text.elt.textContent(alphabet[random(0,25)]);
   }, 400);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
