@@ -128,7 +128,7 @@ class Conjunto {
       this.voronoi[this.inicio].display();
       if(this.inicio > 3998){
         triOsc.amp(0.0);
-        if(loopSound){
+        if(loopMap){
           clear();
           Utils.nuevoMapa();
         }
