@@ -91,7 +91,11 @@ var PaisajeSonoro = function () {
     }
   }, {
     key: "noSound",
-    value: function noSound() {}
+    value: function noSound() {
+      this.ruido.stop();
+      this.ruido.disconnect();
+      this.triOsc.amp(0);
+    }
   }]);
 
   return PaisajeSonoro;

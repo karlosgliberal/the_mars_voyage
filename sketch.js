@@ -81,6 +81,7 @@ class PaisajeSonoro {
   }
 
   noSound(){
+    console.log(hola);
     this.ruido.stop();
     this.ruido.disconnect();
     this.triOsc.amp(0);
