@@ -245,7 +245,8 @@ var Utils = function () {
       }
       if (gui.text.disableSound) {
         sonoridad = new PaisajeSonoro();
-        this.ruido.disconnect();
+      } else {
+        sonoridad.noSound();
       }
     }
   }, {
