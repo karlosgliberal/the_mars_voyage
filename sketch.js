@@ -110,7 +110,7 @@ class Gui{
 
 class Controles {
   constructor() {
-    this.speed = 10;
+    this.speed = 12;
     this.disableLoopMap = true;
     this.onlyNoise = true;
     this.nuevoMapa = function(){

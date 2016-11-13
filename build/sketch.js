@@ -118,7 +118,6 @@ var Gui = function Gui() {
   this.customContainer = document.getElementById('interfaz');
   this.customContainer.appendChild(this.gui.domElement);
   this.gui.add(this.text, 'speed', 1, 65);
-  this.gui.add(this.text, 'rangos', 1, 20);
   this.gui.add(this.text, 'disableLoopMap');
   this.gui.add(this.text, 'onlyNoise');
   this.gui.add(this.text, 'nuevoMapa');
@@ -129,7 +128,6 @@ var Controles = function Controles() {
   _classCallCheck(this, Controles);
 
   this.speed = 10;
-  this.rangos = 1;
   this.disableLoopMap = true;
   this.onlyNoise = true;
   this.nuevoMapa = function () {
