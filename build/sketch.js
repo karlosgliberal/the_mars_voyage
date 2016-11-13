@@ -249,10 +249,8 @@ var Utils = function () {
     value: function nuevoMapa() {
       aleatorio = int(random(1, 839));
       text = createP("This is an HTML string with style!");
-
-      text.position(50, 50);
-      text.style("font-family", "monospace");
-      text.style("background-color", "#FF0000");
+      text.position(width / 2, height / 2);
+      text.style("font-family", "Bourgeois W00 Light Alt");
       text.style("color", "#FFFFFF");
       text.style("font-size", "18pt");
       text.style("padding", "10px");

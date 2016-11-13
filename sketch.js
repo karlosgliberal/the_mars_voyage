@@ -206,7 +206,7 @@ class Utils{
   }
   static nuevoMapa(){
     aleatorio = int(random(1,839));
-    text = createP("This is an HTML string with style!");
+    text = createP("loading");
     text.position(width/2,height/2);
     text.style("font-family", "Bourgeois W00 Light Alt");
 text.style("color", "#FFFFFF");
