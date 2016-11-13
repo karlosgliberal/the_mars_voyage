@@ -248,8 +248,15 @@ var Utils = function () {
     key: "nuevoMapa",
     value: function nuevoMapa() {
       aleatorio = int(random(1, 839));
-      fill(255, 255, 255);
-      rect(100, 100, 100, 100);
+      text = createP("This is an HTML string with style!");
+      canvas = createCanvas(600, 400);
+
+      text.position(50, 50);
+      text.style("font-family", "monospace");
+      text.style("background-color", "#FF0000");
+      text.style("color", "#FFFFFF");
+      text.style("font-size", "18pt");
+      text.style("padding", "10px");
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         Utils.init();
       });

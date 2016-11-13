@@ -207,7 +207,6 @@ class Utils{
   static nuevoMapa(){
     aleatorio = int(random(1,839));
     text = createP("This is an HTML string with style!");
-canvas = createCanvas(600, 400);
 
 text.position(50, 50);
 text.style("font-family", "monospace");
