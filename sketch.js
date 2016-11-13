@@ -214,6 +214,7 @@ class Utils{
 
     var cararTexto = setInterval(function(){
       console.log("movida");
+      clear()
       var randomTextNumber = int(random(0, 24));
       text("", 200, 200);
       text(alphabet[randomTextNumber], 200, 200);
