@@ -144,8 +144,10 @@ var Conjunto = function () {
         if (this.inicio > 3998) {
           triOsc.amp(0.0);
           if (gui.text.disableLoopMap) {
-            clear();
-            Utils.nuevoMapa();
+            setTimeout(function () {
+              clear();
+              Utils.nuevoMapa();
+            }, 2000);
           }
         }
       }
