@@ -73,22 +73,25 @@ var PaisajeSonoro = function () {
     this.delay.process(triOsc, .08, .50, 300);
     ruido = this.ruido = new p5.Noise();
     this.ruido.disconnect();
+    this.ruido.connect(filtro);
+
+    this.ruido.connect(triOsc);
+    this.triOsc.amp(1.2, 0.5);
+    this.triOsc.start();
+    this.ruido.start();
   }
 
   _createClass(PaisajeSonoro, [{
     key: "cambioFrecuencia",
     value: function cambioFrecuencia(freq) {
-      this.ruido.connect(filtro);
-
-      this.ruido.connect(triOsc);
-      this.triOsc.amp(1.2, 0.5);
-      this.triOsc.start();
-      this.ruido.start();
       var freq = map(freq[0], 0, 255, 0, 260);
       filtro.freq(freq);
       triOsc.freq(randomGaussian(freq / 2, freq));
       //filtro.res(freq);
     }
+  }, {
+    key: "noSound",
+    value: function noSound() {}
   }]);
 
   return PaisajeSonoro;

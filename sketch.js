@@ -81,7 +81,7 @@ class PaisajeSonoro {
   }
 
   noSound(){
-    
+
   }
 }
 
@@ -206,7 +206,8 @@ class Utils{
     }
     if(gui.text.disableSound){
       sonoridad = new PaisajeSonoro();
-      this.ruido.disconnect();
+    }else{
+      sonoridad.noSound();
     }
   }
   static nuevoMapa(){
