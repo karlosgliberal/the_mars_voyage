@@ -158,6 +158,7 @@ var Conjunto = function () {
         this.voronoi[this.inicio].display();
         if (this.inicio > 3998) {
           triOsc.amp(0.0);
+          gui.text.speed = int(random(4, 40));
           if (gui.text.disableLoopMap) {
             setTimeout(function () {
               clear();
@@ -264,7 +265,6 @@ var Utils = function () {
       aleatorio = int(random(39, 839));
       var intervalNumber = this.devuelveNombreMapa(aleatorio);
       sonoridad.stop();
-      gui.text.speed = int(random(4, 40));
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         clear();
         clearInterval(intervalNumber);
