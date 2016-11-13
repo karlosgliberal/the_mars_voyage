@@ -104,7 +104,7 @@ var Gui = function Gui() {
   this.gui.add(this.text, 'speed', 1, 80);
   this.gui.add(this.text, 'rangos', 1, 20);
   this.gui.add(this.text, 'nuevoMapa');
-  this, gui.add(this.text, 'loopMap');
+  this.gui.add(this.text, 'loopMap');
   this.gui.add(this.text, 'reset');
 };
 
