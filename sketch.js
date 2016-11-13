@@ -27,9 +27,8 @@ var env, triOsc;
 function preload() {
   aleatorio = int(random(1,842));
   //polygons = loadJSON("./planos2/plano839.json");
-  fuente = loadFont("./css/0eac980ecc9f8db247cc4bc7d60f0da3.tff", function(){
-    polygons = loadJSON("./planos/plano"+aleatorio+".json");
-  });
+  polygons = loadJSON("./planos/plano"+aleatorio+".json");
+  fuente = loadFont("./css/0eac980ecc9f8db247cc4bc7d60f0da3.tff");
 }
 
 function setup() {
