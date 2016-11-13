@@ -11,17 +11,19 @@ var pol = [];
 var colores = [];
 var positions = [];
 var posicionIndice = [];
-var fft, ruido, filtro, reverb, sonoridad;
 var gui;
 var numerRango = 1;
+var aleatorio;
+
+var loop = true;
+
+//Soudn osc
+var fft, ruido, filtro, reverb, sonoridad;
+var attackLevel = 1.0;
+var releaseLevel = 0;
 var env;
 var delay;
 var osc;
-var aleatorio;
-
-//Soudn osc
-var attackLevel = 1.0;
-var releaseLevel = 0;
 
 var attackTime = 0.001;
 var decayTime = 0.2;
@@ -139,8 +141,9 @@ var Conjunto = function () {
       if (this.inicio < this.fin) {
         this.inicio = this.inicio + 1;
         this.voronoi[this.inicio].display();
-        if (this.inicio > 3950) {
+        if (this.inicio > 399) {
           triOsc.amp(0.0);
+          console.log(loop);
         }
       }
     }
