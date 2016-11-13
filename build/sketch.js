@@ -252,14 +252,14 @@ var Utils = function () {
       var alphabet = ["Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu"];
       textFont(fuente);
       textSize(22);
-      text("loading...", 200, 200);
+      text("loading...", (windowWidth - width) / 2, (windowHeight - height) / 2);
 
       var cararTexto = setInterval(function () {
         console.log("movida");
         clear();
         var randomTextNumber = int(random(0, 24));
         text("", 200, 200);
-        text(alphabet[randomTextNumber], 200, 200);
+        text(alphabet[randomTextNumber], (windowWidth - width) / 2, (windowHeight - height) / 2);
       }, 200);
 
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
