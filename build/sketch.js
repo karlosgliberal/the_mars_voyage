@@ -89,14 +89,6 @@ var PaisajeSonoro = function () {
       triOsc.freq(randomGaussian(freq / 2, freq));
       //filtro.res(freq);
     }
-  }, {
-    key: "noSound",
-    value: function noSound() {
-      console.log(hola);
-      this.ruido.stop();
-      this.ruido.disconnect();
-      this.triOsc.amp(0);
-    }
   }]);
 
   return PaisajeSonoro;
@@ -112,7 +104,7 @@ var Gui = function Gui() {
   this.gui.add(this.text, 'speed', 1, 80);
   this.gui.add(this.text, 'rangos', 1, 20);
   this.gui.add(this.text, 'disableLoopMap');
-  this.gui.add(this.text, 'disableSound');
+  this.gui.add(this.text, 'onlyNoise');
   this.gui.add(this.text, 'nuevoMapa');
   this.gui.add(this.text, 'reset');
 };
@@ -123,7 +115,7 @@ var Controles = function Controles() {
   this.speed = 8;
   this.rangos = 1;
   this.disableLoopMap = true;
-  this.disableSound = true;
+  this.onlyNoise = true;
   this.nuevoMapa = function () {
     clear();
     //ruido.stop();
@@ -248,10 +240,8 @@ var Utils = function () {
       for (var i = 0; i < rangoDeVoronois.length; i++) {
         pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
       }
-      if (gui.text.disableSound) {
+      if (gui.text.onlyNoise) {
         sonoridad = new PaisajeSonoro();
-      } else {
-        sonoridad.noSound();
       }
     }
   }, {
