@@ -279,8 +279,8 @@ var Utils = function () {
           b = c[2] / 255;
       var max = Math.max(r, g, b),
           min = Math.min(r, g, b);
-      var h,
-          s,
+      var h = void 0,
+          s = void 0,
           l = (max + min) / 2;
 
       if (max == min) {
