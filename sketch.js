@@ -207,7 +207,7 @@ class Utils{
     polis = Utils.crearVoronois();
     let rangoDeVoronois = Utils.crearRango(gui.text.rango);
     //TODO Tengo que ver como funciona la creación automatica de objeto en ES6
-    for (var i = 0; i < rangoDeVoronois.length; i++) {
+    for (let i = 0; i < rangoDeVoronois.length; i++) {
       pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
     }
     if(gui.text.onlyNoise){
@@ -230,7 +230,7 @@ class Utils{
 
 
   static rgbToHsl(c){
-    var r = c[0] / 255,
+    let r = c[0] / 255,
         g = c[1] / 255,
         b = c[2] / 255;
     var max = Math.max(r, g, b),
