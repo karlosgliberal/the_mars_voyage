@@ -15,7 +15,7 @@ var gui;
 var numerRango = 1;
 var aleatorio;
 
-var loop = true;
+var loopSound = true;
 
 //Soudn osc
 var fft, ruido, filtro, reverb, sonoridad;
@@ -143,7 +143,7 @@ var Conjunto = function () {
         this.voronoi[this.inicio].display();
         if (this.inicio > 3998) {
           triOsc.amp(0.0);
-          console.log(loop);
+          console.log(loopSound);
         }
       }
     }

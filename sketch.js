@@ -126,7 +126,10 @@ class Conjunto {
       this.voronoi[this.inicio].display();
       if(this.inicio > 3998){
         triOsc.amp(0.0);
-        console.log(loopSound);
+        if(loopSound){
+          clear();
+          Utils.init();
+        }
       }
     }
   }
