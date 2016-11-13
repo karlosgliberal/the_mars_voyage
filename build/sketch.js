@@ -104,6 +104,7 @@ var Gui = function Gui() {
   this.gui.add(this.text, 'speed', 1, 80);
   this.gui.add(this.text, 'rangos', 1, 20);
   this.gui.add(this.text, 'disableLoopMap');
+  this.gui.add(this.text, 'disableSound');
   this.gui.add(this.text, 'nuevoMapa');
   this.gui.add(this.text, 'reset');
 };
@@ -114,6 +115,7 @@ var Controles = function Controles() {
   this.speed = 8;
   this.rangos = 1;
   this.disableLoopMap = true;
+  this.disableSound = true;
   this.nuevoMapa = function () {
     clear();
     //ruido.stop();
@@ -147,7 +149,7 @@ var Conjunto = function () {
             setTimeout(function () {
               clear();
               Utils.nuevoMapa();
-            }, 2000);
+            }, 500);
           }
         }
       }

@@ -200,8 +200,9 @@ class Utils{
     for (var i = 0; i < rangoDeVoronois.length; i++) {
       pol[i] = new Conjunto(polis, rangoDeVoronois[i][0], rangoDeVoronois[i][1]);
     }
-    sonoridad = new PaisajeSonoro();
-
+    if(gui.text.disableSound){
+      sonoridad = new PaisajeSonoro();
+    }
   }
   static nuevoMapa(){
     aleatorio = int(random(1,839));
