@@ -210,13 +210,14 @@ class Utils{
     var alphabet = ["Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliett","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","X-ray","Yankee","Zulu"];
     textFont(fuente);
     textSize(22);
-    text("loading",200,200);
-    
-    setInterval(function(){
-      console.log(text);
-  }, 400);
+    text("loading...",200,200);
+
+    var cararTexto = setInterval(function(){
+      text(alphabet[random(0,24)], 200, 200);
+    }, 400);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
+      clearInterval(cararTexto);
       Utils.init();
     });
   }
