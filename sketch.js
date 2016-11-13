@@ -81,7 +81,11 @@ class PaisajeSonoro {
     this.triOsc.start();
     this.ruido.start();
   }
-
+  stop(){
+    this.triOsc.amp(0);
+    this.triOsc.stop();
+    this.ruido.stop();
+  }
   cambioFrecuencia(freq){
     var freq = map(freq[0], 0, 255, 0, 260);
     filtro.freq(freq);

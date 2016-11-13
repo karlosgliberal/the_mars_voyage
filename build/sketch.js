@@ -87,8 +87,8 @@ var PaisajeSonoro = function () {
     key: "start",
     value: function start() {
       this.triOsc.amp(1.2, 0.5);
-      //this.triOsc.start();
-      //this.ruido.start();
+      this.triOsc.start();
+      this.ruido.start();
     }
   }, {
     key: "cambioFrecuencia",
