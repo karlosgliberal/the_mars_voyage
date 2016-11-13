@@ -209,14 +209,11 @@ class Utils{
     aleatorio = int(random(1,839));
     var alphabet = ["Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliett","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","X-ray","Yankee","Zulu"];
     var text = createP("loading");
-    text.position(canvas.width/2,canvas.height/2);
-    text.style("font-family", "Bourgeois W00 Light Alt");
-    text.style("color", "#FFFFFF");
-    text.style("font-size", "18pt");
-    text.style("padding", "10px");
+    textFont(fuente);
+    textSize(32)
+    text("loading", 10, 30);
     setInterval(function(){
       console.log(text);
-    text.elt.textContent(alphabet[random(0,25)]);
   }, 400);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
