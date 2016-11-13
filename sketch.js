@@ -99,7 +99,7 @@ class Controles {
   constructor() {
     this.speed = 8;
     this.rangos = 1;
-    this.loopMap = true;
+    this.disableLoopMap = true;
     this.nuevoMapa = function(){
       clear();
       //ruido.stop();
