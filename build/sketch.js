@@ -248,6 +248,8 @@ var Utils = function () {
     key: "nuevoMapa",
     value: function nuevoMapa() {
       aleatorio = int(random(1, 839));
+      fill(255, 255, 255);
+      rect(100, 100, 100, 100);
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         Utils.init();
       });
