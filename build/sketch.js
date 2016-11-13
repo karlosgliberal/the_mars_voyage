@@ -105,7 +105,7 @@ var Gui = function Gui() {
   this.gui = new dat.GUI({ autoPlace: false });
   this.customContainer = document.getElementById('interfaz');
   this.customContainer.appendChild(this.gui.domElement);
-  this.gui.add(this.text, 'speed', 1, 80);
+  this.gui.add(this.text, 'speed', 1, 65);
   this.gui.add(this.text, 'rangos', 1, 20);
   this.gui.add(this.text, 'disableLoopMap');
   this.gui.add(this.text, 'onlyNoise');
