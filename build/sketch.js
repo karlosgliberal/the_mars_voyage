@@ -145,7 +145,7 @@ var Conjunto = function () {
           triOsc.amp(0.0);
           if (loopSound) {
             clear();
-            Utils.init();
+            Utils.nuevoMapa();
           }
         }
       }

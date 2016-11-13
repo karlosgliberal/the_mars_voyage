@@ -9,7 +9,7 @@ var gui;
 var numerRango = 1;
 var aleatorio;
 
-var loopSound = true;
+var loopMap = true;
 
 //Soudn osc
 var fft, ruido, filtro, reverb, sonoridad;
@@ -92,6 +92,7 @@ class Gui{
     this.gui.add(this.text, 'speed', 1, 80);
     this.gui.add(this.text, 'rangos', 1, 20);
     this.gui.add(this.text, 'nuevoMapa');
+    this,gui.add(this.text, 'loopMap');
     this.gui.add(this.text, 'reset');
   }
 }
@@ -100,6 +101,7 @@ class Controles {
   constructor() {
     this.speed = 8;
     this.rangos = 1;
+    this.loopMap = false;
     this.nuevoMapa = function(){
       clear();
       //ruido.stop();
