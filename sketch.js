@@ -111,7 +111,8 @@ class Gui{
 
 class Controles {
   constructor() {
-    this.speed = 16;
+    let speedRandom = random(4,40);
+    this.speed = speedRandom;
     this.rangos = 1;
     this.disableLoopMap = true;
     this.onlyNoise = true;

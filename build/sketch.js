@@ -266,10 +266,10 @@ var Utils = function () {
     value: function nuevoMapa() {
       aleatorio = int(random(39, 839));
       var intervalNumber = this.devuelveNombreMapa(aleatorio);
+      sonoridad.stop();
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         clear();
         clearInterval(intervalNumber);
-        sonoridad.stop();
         Utils.init();
       });
     }
