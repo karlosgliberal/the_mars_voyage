@@ -212,7 +212,7 @@ class Utils{
     }
   }
   static nuevoMapa(){
-    aleatorio = int(random(1,839));
+    aleatorio = int(random(39,839));
     let intervalNumber = this.devuelveNombreMapa(aleatorio);
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clear()
