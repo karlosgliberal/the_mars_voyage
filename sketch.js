@@ -26,14 +26,15 @@ var env, triOsc;
 
 function preload() {
   aleatorio = int(random(1,842));
+  textSize(44);
+  text("000",  width / 2-100, height / 2);
   //polygons = loadJSON("./planos2/plano839.json");
   polygons = loadJSON("./planos/plano"+aleatorio+".json");
   fuente = loadFont("css/fuente.ttf");
 }
 
 function setup() {
-  clear()
-  clearInterval(intervalNumber);
+  clear();
   canvas = createCanvas(1024, 768);
   canvas.parent('marte');
   smooth(2);
