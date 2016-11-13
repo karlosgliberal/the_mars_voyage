@@ -75,11 +75,13 @@ class PaisajeSonoro {
     this.ruido.connect(filtro);
     this.ruido.connect(triOsc);
 
-    this.triOsc.amp(1.2, 0.5);
-
-    this.triOsc.start();
-    this.ruido.start();
   }
+  start(){
+    this.triOsc.amp(1.2, 0.5);
+    //this.triOsc.start();
+    //this.ruido.start();
+  }
+
   cambioFrecuencia(freq){
     var freq = map(freq[0], 0, 255, 0, 260);
     filtro.freq(freq);
@@ -209,6 +211,7 @@ class Utils{
     }
     if(gui.text.onlyNoise){
       sonoridad = new PaisajeSonoro();
+      sonoridad.start();
     }
   }
   static nuevoMapa(){

@@ -254,7 +254,7 @@ var Utils = function () {
   }, {
     key: "nuevoMapa",
     value: function nuevoMapa() {
-      aleatorio = int(random(1, 839));
+      aleatorio = int(random(39, 839));
       var intervalNumber = this.devuelveNombreMapa(aleatorio);
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         clear();
