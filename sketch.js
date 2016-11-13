@@ -222,7 +222,7 @@ class Utils{
     aleatorio = int(random(39,839));
     let intervalNumber = this.devuelveNombreMapa(aleatorio);
     sonoridad.stop();
-    gui.text.speed
+    gui.text.speed = int(random(4,40));
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clear()
       clearInterval(intervalNumber);
