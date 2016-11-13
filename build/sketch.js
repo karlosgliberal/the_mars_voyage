@@ -256,6 +256,7 @@ var Utils = function () {
       text.style("font-size", "18pt");
       text.style("padding", "10px");
       setInterval(function () {
+        console.log(text);
         text.textContent(alphabet[random(0, 25)]);
       }, 400);
 
