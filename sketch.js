@@ -1,5 +1,5 @@
 //The mars voyage karlos g liberal (@patxangas) http://interzonas.info 7
-var canvas, polygons;
+var canvas, polygons, fuente;
 var polis = [];
 var pol = []
 var colores = [];
@@ -27,6 +27,7 @@ var env, triOsc;
 function preload() {
   aleatorio = int(random(1,842));
   //polygons = loadJSON("./planos2/plano839.json");
+  fuente = loadFont("./css/0eac980ecc9f8db247cc4bc7d60f0da3.tff");
   polygons = loadJSON("./planos/plano"+aleatorio+".json");
 }
 
