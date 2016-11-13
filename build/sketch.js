@@ -249,11 +249,15 @@ var Utils = function () {
     value: function nuevoMapa() {
       aleatorio = int(random(1, 839));
       text = createP("loading");
-      text.position(width / 2, height / 2);
+      text.position(canvas.width / 2, canvas.height / 2);
       text.style("font-family", "Bourgeois W00 Light Alt");
       text.style("color", "#FFFFFF");
       text.style("font-size", "18pt");
       text.style("padding", "10px");
+      console.log(frameCount);
+      var alphabet = ["Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu"];
+      for (var i = 0; i < alphabet.length; i++) {}
+
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         Utils.init();
       });
