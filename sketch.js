@@ -221,6 +221,7 @@ class Utils{
     }, 40);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
+      clear()
       clearInterval(cararTexto);
       Utils.init();
     });
