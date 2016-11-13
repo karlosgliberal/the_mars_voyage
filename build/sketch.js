@@ -5,7 +5,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 //The mars voyage karlos g liberal (@patxangas) http://interzonas.info 7
-var canvas, polygons;
+var canvas, polygons, fuente;
 var polis = [];
 var pol = [];
 var colores = [];
@@ -32,6 +32,7 @@ var env, triOsc;
 function preload() {
   aleatorio = int(random(1, 842));
   //polygons = loadJSON("./planos2/plano839.json");
+  fuente = loadFont("./css/0eac980ecc9f8db247cc4bc7d60f0da3.tff");
   polygons = loadJSON("./planos/plano" + aleatorio + ".json");
 }
 
