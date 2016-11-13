@@ -92,6 +92,7 @@ var PaisajeSonoro = function () {
   }, {
     key: "noSound",
     value: function noSound() {
+      console.log(hola);
       this.ruido.stop();
       this.ruido.disconnect();
       this.triOsc.amp(0);
