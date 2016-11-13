@@ -215,8 +215,7 @@ class Utils{
       console.log("movida");
       clear()
       var randomTextNumber = int(random(0, 24));
-      text("", width / 2, height / 2);
-      text(alphabet[randomTextNumber], (windowWidth - width) / 2, (windowHeight - height) / 2);
+      text(alphabet[randomTextNumber],  width / 2, height / 2);
     }, 200);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
