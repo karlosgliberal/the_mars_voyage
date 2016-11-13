@@ -216,7 +216,7 @@ class Utils{
       clear()
       var randomTextNumber = int(random(0, 24));
       text(alphabet[randomTextNumber],  width / 2, height / 2);
-    }, 200);
+    }, 100);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clear()
