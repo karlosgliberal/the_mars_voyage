@@ -115,7 +115,7 @@ var Controles = function Controles() {
 
   this.speed = 8;
   this.rangos = 1;
-  this.loopMap = false;
+  loopMap = false;
   this.nuevoMapa = function () {
     clear();
     //ruido.stop();
