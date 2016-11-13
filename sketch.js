@@ -256,7 +256,7 @@ class Utils{
     var cararTexto = setInterval(function(){
       clear()
       var randomTextNumber = int(random(0, 24));
-      text(alphabet[randomTextNumber],  width / 2-200, height / 2);
+      text(alphabet[randomTextNumber],  width / 2-220, height / 2);
     }, 100);
     return cararTexto;
   }
