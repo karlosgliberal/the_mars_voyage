@@ -141,7 +141,7 @@ var Conjunto = function () {
       if (this.inicio < this.fin) {
         this.inicio = this.inicio + 1;
         this.voronoi[this.inicio].display();
-        if (this.inicio > 399) {
+        if (this.inicio > 3998) {
           triOsc.amp(0.0);
           console.log(loop);
         }
