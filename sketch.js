@@ -207,7 +207,7 @@ class Utils{
   static nuevoMapa(){
     aleatorio = int(random(1,839));
     var alphabet = ["Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliett","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","X-ray","Yankee","Zulu"];
-    text = createP("loading");
+    var text = createP("loading");
     text.position(canvas.width/2,canvas.height/2);
     text.style("font-family", "Bourgeois W00 Light Alt");
     text.style("color", "#FFFFFF");

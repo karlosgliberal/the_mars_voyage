@@ -256,9 +256,8 @@ var Utils = function () {
       text.style("font-size", "18pt");
       text.style("padding", "10px");
       setInterval(function () {
-        console.log(text);
-        alert("Hello");
-      }, 3000);
+        text.textContent(alphabet[random(0, 25)]);
+      }, 400);
 
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         Utils.init();
