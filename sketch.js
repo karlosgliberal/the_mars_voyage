@@ -214,13 +214,13 @@ class Utils{
 
     var cararTexto = setInterval(function(){
       console.log("movida");
+      var randomTextNumber = int(random(0, 24));
       text("", 200, 200);
-      text(alphabet[random(0,24)], 200, 200);
+      text(alphabet[randomTextNumber], 200, 200);
     }, 40);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clearInterval(cararTexto);
-
       Utils.init();
     });
   }

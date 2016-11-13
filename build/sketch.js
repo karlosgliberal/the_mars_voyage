@@ -262,6 +262,7 @@ var Utils = function () {
 
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
         clearInterval(cararTexto);
+
         Utils.init();
       });
     }
