@@ -15,8 +15,6 @@ var gui;
 var numerRango = 1;
 var aleatorio;
 
-var loopMap = true;
-
 //Soudn osc
 var fft, ruido, filtro, reverb, sonoridad;
 var attackLevel = 1.0;
@@ -106,7 +104,7 @@ var Gui = function Gui() {
   this.gui.add(this.text, 'speed', 1, 80);
   this.gui.add(this.text, 'rangos', 1, 20);
   this.gui.add(this.text, 'nuevoMapa');
-  this.gui.add(this.text, 'loopMap');
+  this, gui.add(this.text, 'loopMap');
   this.gui.add(this.text, 'reset');
 };
 
@@ -115,7 +113,7 @@ var Controles = function Controles() {
 
   this.speed = 8;
   this.rangos = 1;
-  loopMap = false;
+  this.loopMap = false;
   this.nuevoMapa = function () {
     clear();
     //ruido.stop();
@@ -145,7 +143,7 @@ var Conjunto = function () {
         this.voronoi[this.inicio].display();
         if (this.inicio > 3998) {
           triOsc.amp(0.0);
-          if (loopMap) {
+          if (gui.text.loopMap) {
             clear();
             Utils.nuevoMapa();
           }
