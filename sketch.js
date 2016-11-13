@@ -214,7 +214,7 @@ class Utils{
 
     var cararTexto = setInterval(function(){
       text(alphabet[random(0,24)], 200, 200);
-    }, 400);
+    }, 40);
 
     polygons = loadJSON("./planos/plano"+aleatorio+".json",function(){
       clearInterval(cararTexto);

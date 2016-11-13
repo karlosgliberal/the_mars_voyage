@@ -254,11 +254,12 @@ var Utils = function () {
       textSize(22);
       text("loading...", 200, 200);
 
-      setInterval(function () {
-        console.log(text);
+      var cararTexto = setInterval(function () {
+        text(alphabet[random(0, 24)], 200, 200);
       }, 400);
 
       polygons = loadJSON("./planos/plano" + aleatorio + ".json", function () {
+        clearInterval(cararTexto);
         Utils.init();
       });
     }
