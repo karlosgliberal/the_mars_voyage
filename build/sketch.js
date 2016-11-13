@@ -116,7 +116,7 @@ var Gui = function Gui() {
 var Controles = function Controles() {
   _classCallCheck(this, Controles);
 
-  this.speed = 8;
+  this.speed = 16;
   this.rangos = 1;
   this.disableLoopMap = true;
   this.onlyNoise = true;
