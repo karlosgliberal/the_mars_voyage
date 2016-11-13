@@ -130,7 +130,7 @@ class Conjunto {
           setTimeout(function(){
             clear();
             Utils.nuevoMapa();
-          }, 2000)
+          }, 500)
         }
       }
     }
