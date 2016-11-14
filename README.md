@@ -11,7 +11,9 @@ Este proyecto es una interpretación de las imágenes que obtiene la cámara [Hi
 
 The mars voyage se ha realizado con [p5.js](http://p5.js) esta herramienta de la funcación processing esta pensada para fucionar con un navegador.
 
-El proyecto se divide en dos parte, la primera ([gist](https://gist.github.com/karlosgliberal/0e9e61d9f427c2c9c6c2cb06ded3052a)) con la que generamos el plano de coordenadas y colores, desde el marco del diagrama de voronoi (creado con [d3.js](https://d3js.org/)). Y la segunda (este proyecto), que interpreta el plano para crear una visualización de marte desde nuestro punto de vista.
+El proyecto se divide en dos parte, la primera ([gist](https://gist.github.com/karlosgliberal/0e9e61d9f427c2c9c6c2cb06ded3052a)) con la que generamos el plano de coordenadas y colores, desde el marco del diagrama de voronoi (creado con [d3.js](https://d3js.org/)). Y la segunda (este proyecto), que interpreta el plano para crear una visualización de Marte desde nuestro punto de vista.
+
+Se han interpretado 836 fotos generado un plano json para cada uno de ellos.
 
 ###Install
 ```javascript
